@@ -32,6 +32,9 @@ public:
   */
   void Init(double Kp, double Ki, double Kd);
 
+
+  void UpdateParameters(double Kp, double Ki, double Kd);
+
   /*
   * Update the PID error variables given cross track error.
   */
@@ -41,6 +44,9 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+
+
+  void Twiddle(double tol, double cte);
 };
 
 #endif /* PID_H */

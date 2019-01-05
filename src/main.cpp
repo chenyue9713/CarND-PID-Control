@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
+          pid.Twiddle(0.001, cte);
           pid.UpdateError(cte);
           steer_value = pid.TotalError();
 

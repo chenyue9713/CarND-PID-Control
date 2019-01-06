@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
   // TODO: Initialize the pid variable.
   double init_Kp = atof(argv[1]);
   double init_Ki = atof(argv[2]);
-  double init_Kd = atof(argv[2]); 
+  double init_Kd = atof(argv[3]); 
 
   pid.Init(init_Kp, init_Ki, init_Kd);
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
           // j[1] is the data JSON object
           double cte = std::stod(j[1]["cte"].get<std::string>());
           double speed = std::stod(j[1]["speed"].get<std::string>());
-          double angle = std::stod(j[1]["steering_angle"].get<std::string>());
+          //double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
           /*
           * TODO: Calcuate steering value here, remember the steering value is
@@ -62,9 +62,9 @@ int main(int argc, char *argv[])
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-          pid.Twiddle(0.001, cte);
           pid.UpdateError(cte);
           steer_value = pid.TotalError();
+         
 
 
           

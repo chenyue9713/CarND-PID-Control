@@ -1,4 +1,4 @@
-# CarND-Controls-PID![png](images/image1.png)
+# CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
 ---
@@ -20,6 +20,7 @@ For the PID Controller algorithm, the parameters Kp, Ki and Kd are key factors f
 ## Final Hyperparameters choosen
 The parameters were choosen manually by tries. Cte is relative small, around 0.7 by setting Kp, Ki and Kd to zero, so as I mentioned above, in the scenario, I controller is probably overpowerfull. So I tried set the value to 0.0001 or 0.0, there is not visibly difference between performances under different values. So I set Ki to 0.0. And for P controller, the goal I tried to achieve is that the vihcle can keep it on the lane at beginning straigth lane, Finally 0.15 is choosen for Kp. And for D controller, the parameter value is choosen for handling overshoot on any different scenarios like, curve and straight lanes. And the final parameter I choosen is 2.5. 
 The final parameters are:
+
 | Parameter                        |     Value                       |
 |:---------------------:|:---------------------------------------------:|
 | P                 | 0.15                                 |

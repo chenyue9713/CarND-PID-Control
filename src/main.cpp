@@ -28,15 +28,15 @@ std::string hasData(std::string s) {
   return "";
 }
 
-int main(int argc, char *argv[])
+int main()
 {
   uWS::Hub h;
 
   PID pid;
   // TODO: Initialize the pid variable.
-  double init_Kp = atof(argv[1]);
-  double init_Ki = atof(argv[2]);
-  double init_Kd = atof(argv[3]); 
+  double init_Kp = 0.15;
+  double init_Ki = 0.0;
+  double init_Kd = 2.5; 
 
   pid.Init(init_Kp, init_Ki, init_Kd);
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
         if (event == "telemetry") {
           // j[1] is the data JSON object
           double cte = std::stod(j[1]["cte"].get<std::string>());
-          double speed = std::stod(j[1]["speed"].get<std::string>());
+          //double speed = std::stod(j[1]["speed"].get<std::string>());
           //double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
           /*
@@ -64,6 +64,12 @@ int main(int argc, char *argv[])
           */
           pid.UpdateError(cte);
           steer_value = pid.TotalError();
+          if(steer_value > 1.0){
+            steer_value = 1.0;
+          }
+          else if(steer_value < -1.0){
+            steer_value = -1.0;
+          }
          
 
 
